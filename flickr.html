@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="flickr"></div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script>
+		function flickr(user){
+			$.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?id='+user+'&format=json&jsoncallback=?', function(data){
+				for(i=0; i<12; i++){
+					$("<img />").attr("src", data.items[i].media.m).appendTo("#flickr").wrap("<a href='" + data.items[i].link + "' title='" + data.items[i].title + "' target='_blank'><\/a>");
+				}
+			});
+		}
+		flickr('21088294@N00');	
+	</script>
+	
+</body>
+</html>
